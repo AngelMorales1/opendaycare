@@ -1,4 +1,20 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 export default function Sidebar() {
+  const pathname = usePathname();
+  const isKids = pathname === "/kids" || (pathname?.startsWith("/kids/") ?? false);
+  const isFeed = pathname === "/";
+
+  const navItemClass = (active: boolean) =>
+    `flex items-center gap-3 px-3 py-[11px] rounded-xl text-[14.5px] ${
+      active
+        ? "bg-accent-bg text-accent font-extrabold"
+        : "bg-transparent text-muted-dark font-semibold"
+    }`;
+
   return (
     <aside className="w-[248px] flex-none bg-card border-r border-border flex flex-col py-6 px-4 sticky top-0 h-screen">
       <a href="index.dc.html" className="flex items-center gap-[11px] px-2 pt-1 pb-[22px]">
@@ -45,9 +61,9 @@ export default function Sidebar() {
       </a>
 
       <nav className="flex flex-col gap-1 flex-1">
-        <a
-          href="feed.dc.html"
-          className="flex items-center gap-3 px-3 py-[11px] rounded-xl bg-accent-bg text-accent font-extrabold text-[14.5px]"
+        <Link
+          href="/"
+          className={navItemClass(isFeed)}
         >
           <svg
             width="19"
@@ -62,10 +78,10 @@ export default function Sidebar() {
             <path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" />
           </svg>
           Feed
-        </a>
-        <a
-          href="ninos.dc.html"
-          className="flex items-center gap-3 px-3 py-[11px] rounded-xl bg-transparent text-muted-dark font-semibold text-[14.5px]"
+        </Link>
+        <Link
+          href="/kids"
+          className={navItemClass(isKids)}
         >
           <svg
             width="19"
@@ -82,7 +98,7 @@ export default function Sidebar() {
             <path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 20a5 5 0 0 1 5.5-4.9" />
           </svg>
           Niños
-        </a>
+        </Link>
         <a
           href="avisos.dc.html"
           className="flex items-center gap-3 px-3 py-[11px] rounded-xl bg-transparent text-muted-dark font-semibold text-[14.5px]"
