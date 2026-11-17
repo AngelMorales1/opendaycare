@@ -7,3 +7,47 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Project
+
+- Next.js 16.4.5 App Router app for a daycare ("open-daycare"). Currently scaffold + HTML design prototypes; app code lives in `app/`.
+- UI copy and prototype labels are in Spanish; roles are staff (educators) and parents.
+
+## Commands
+
+- Dev server: `npm run dev` (http://localhost:3000)
+- Production build: `npm run build`
+- Serve build: `npm run start`
+- Lint: `npm run lint` (ESLint 9 + eslint-config-next)
+- Typecheck: `npx tsc --noEmit` (strict TS; no npm script)
+- No test suite is configured yet.
+
+## Key paths
+
+- App Router entrypoints: `app/layout.tsx`, `app/page.tsx`, `app/globals.css`
+- Path alias: `@/*` -> repo root (`tsconfig.json`)
+- Design prototypes: `references/pantallas/*.dc.html` plus `references/screenshots/`; `support.js` there is generated (do not edit)
+- Spec workflow: `.agents/skills/spec`, `.agents/skills/spec-impl`, template `.agents/skills/spec/template.md`; specs go in `specs/` (not present until first spec) and create branches `spec-NN-slug`
+- Spec skill versions tracked in `skills-lock.json`
+
+## Next.js 16 quirks
+
+- Read `node_modules/next/dist/docs/` before coding; this version has breaking changes.
+- Enabled in `next.config.ts`: `cacheComponents`, `partialPrefetching`, `agentFeedback`, plus Turbopack CSS rule using `@tailwindcss/turbopack`.
+- Tailwind v4 is imported via `@import "tailwindcss"` in `globals.css`; there is no `tailwind.config`.
+- Layout uses typed routes: `LayoutProps<"/">`.
+
+## Conventions
+
+- Preserve the auto-generated Next.js agent block above; `next dev` re-adds it.
+- `.playwright-mcp/` holds MCP artifacts and is gitignored.
+
+## MCPs (global OpenCode config)
+
+- Playwright: server `playwright` (local stdio `npx @playwright/mcp@latest`), configured globally; provides browser automation/snapshot tools.
+- Context7: server `context7` (remote) for up-to-date library/framework docs; use `resolve-library-id` then `query-docs`.
+- MCP config lives in `~/.config/opencode/opencode.json` (global), not in this repo; do not commit credentials.
+
+## Code Rules
+
+- Use Clean code rules, names and variables in english.

@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Generated design-prototype assets (do not edit, see AGENTS.md):
+    "references/**",
   ]),
 ]);
 
