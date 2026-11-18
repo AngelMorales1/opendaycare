@@ -1,3 +1,4 @@
+import Link from "next/link";
 import AppShell from "@/components/app-shell";
 import KidsList from "@/components/kids-list";
 import { kids } from "@/mock-data/kids";
@@ -15,8 +16,8 @@ export default function KidsPage() {
               Niños
             </h1>
           </div>
-          <a
-            href="agregar-nino.dc.html"
+          <Link
+            href="/kids/new"
             className="flex items-center gap-2 px-[18px] py-[11px] rounded-[14px] bg-gradient-to-b from-button-from to-button-to text-white font-extrabold text-[14.5px] shadow-[0_8px_18px_-8px_rgba(238,129,100,.75)]"
           >
             <svg
@@ -32,7 +33,7 @@ export default function KidsPage() {
               <path d="M12 5v14M5 12h14" />
             </svg>
             Agregar niño
-          </a>
+          </Link>
         </div>
 
         <KidsList kids={kids} />
