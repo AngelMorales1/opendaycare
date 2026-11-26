@@ -1,9 +1,10 @@
-import Link from "next/link";
 import AppShell from "@/components/app-shell";
+import AddKidModal from "@/components/add-kid-modal";
 import KidsList from "@/components/kids-list";
-import { kids } from "@/mock-data/kids";
+import { getKids } from "@/mock-data/kids";
 
 export default function KidsPage() {
+  const kids = getKids();
   return (
     <AppShell>
       <div className="max-w-[880px] w-full mx-auto px-4 md:px-10 py-6 md:py-[34px] pb-20">
@@ -16,24 +17,7 @@ export default function KidsPage() {
               Niños
             </h1>
           </div>
-          <Link
-            href="/kids/new"
-            className="flex items-center gap-2 px-[18px] py-[11px] rounded-[14px] bg-gradient-to-b from-button-from to-button-to text-white font-extrabold text-[14.5px] shadow-[0_8px_18px_-8px_rgba(238,129,100,.75)]"
-          >
-            <svg
-              width="17"
-              height="17"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#fff"
-              strokeWidth="2.4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M12 5v14M5 12h14" />
-            </svg>
-            Agregar niño
-          </Link>
+          <AddKidModal />
         </div>
 
         <KidsList kids={kids} />

@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { kids } from "@/mock-data/kids";
+import { getKids } from "@/mock-data/kids";
 
 export default function ActivateAccountPage() {
+  const kids = getKids();
   const invited = kids.find((k) => k.id === "mateo-fernandez")!;
   const invitedName = invited.name.split(" ")[0];
 

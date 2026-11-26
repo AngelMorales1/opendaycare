@@ -18,6 +18,7 @@ export type Kid = {
   parents: string;
   status?: "ACTIVA" | "PENDIENTE" | "MANÍ" | "LACTOSA" | "VINCULAR";
   allergyNote?: string;
+  medicalNotes?: string;
   birthDate?: string;
   room?: string;
   enrollment?: string;

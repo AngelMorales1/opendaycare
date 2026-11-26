@@ -1,11 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AppShell from "@/components/app-shell";
-import { kids } from "@/mock-data/kids";
-
-export function generateStaticParams() {
-  return kids.map((kid) => ({ id: kid.id }));
-}
+import { getKids } from "@/mock-data/kids";
 
 export const instant = false;
 
@@ -15,6 +11,7 @@ export default async function KidProfilePage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  const kids = getKids();
   const kid = kids.find((k) => k.id === id);
   if (!kid) notFound();
 
@@ -111,12 +108,20 @@ export default async function KidProfilePage({
                   {kid.room ?? "Soles"}
                 </span>
               </div>
-              <div className="flex justify-between px-[18px] py-[15px]">
+              <div className="flex justify-between px-[18px] py-[15px] border-b border-divider">
                 <span className="text-muted text-[14.5px]">Ingreso</span>
                 <span className="font-extrabold text-ink text-[14.5px]">
                   {kid.enrollment ?? "—"}
                 </span>
               </div>
+              {kid.medicalNotes && (
+                <div className="flex justify-between px-[18px] py-[15px]">
+                  <span className="text-muted text-[14.5px]">Notas médicas</span>
+                  <span className="font-extrabold text-ink text-[14.5px] text-right max-w-[60%]">
+                    {kid.medicalNotes}
+                  </span>
+                </div>
+              )}
             </div>
           </div>
 
